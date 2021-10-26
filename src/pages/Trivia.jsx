@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 
 import Footer from '../components/Footer';
@@ -9,7 +11,7 @@ import opentdbAPI from '../services/opentdbAPI';
 
 const QUESTIONS_AMOUNT = 5;
 
-export default class Trivia extends React.Component {
+class Trivia extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -22,7 +24,8 @@ export default class Trivia extends React.Component {
   }
 
   async componentDidMount() {
-    const response = await opentdbAPI.fetchQuestions(QUESTIONS_AMOUNT);
+    const { settings } = this.props;
+    const response = await opentdbAPI.fetchQuestions(QUESTIONS_AMOUNT, settings);
     this.loadQuestions(response.results);
   }
 
@@ -77,3 +80,17 @@ export default class Trivia extends React.Component {
     );
   }
 }
+
+Trivia.propTypes = {
+  settings: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    difficulty: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+const mapStatetoProps = (state) => ({
+  settings: state.settings,
+});
+
+export default connect(mapStatetoProps)(Trivia);

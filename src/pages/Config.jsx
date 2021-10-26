@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import Button from '../components/Button';
 import { setSettingsGame } from '../redux/actions';
@@ -16,7 +15,7 @@ class Config extends React.Component {
       type: 'multiple',
     };
 
-    this.onClick = this.onClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.allCategories = this.allCategories.bind(this);
   }
 
@@ -25,10 +24,13 @@ class Config extends React.Component {
     this.allCategories(categories);
   }
 
-  onClick(e) {
+  handleSubmit(e) {
+    const { history } = this.props;
+    const { category, difficulty, type } = this.state;
     e.preventDefault();
     const { setSettingsGames } = this.props;
-    setSettingsGames(this.state);
+    setSettingsGames({ category, difficulty, type });
+    history.push('/');
   }
 
   allCategories(categories) {
@@ -55,7 +57,7 @@ class Config extends React.Component {
 
   renderDifficulty() {
     const { difficulty } = this.state;
-    const difficultys = ['hard', 'medium', 'easy'];
+    const difficultys = ['Any Difficulty', 'easy', 'medium', 'hard'];
     return (
       <label htmlFor="difficulty-input" className="difficulty-selector">
         Dificuldade
@@ -74,7 +76,7 @@ class Config extends React.Component {
 
   renderType() {
     const { type } = this.state;
-    const types = ['multiple', 'boleean'];
+    const types = ['Any Type', 'multiple', 'boolean'];
     return (
       <label htmlFor="type-input" className="type-selector">
         Tipo
@@ -95,18 +97,15 @@ class Config extends React.Component {
     return (
       <main id="config">
         <h1 data-testid="settings-title">Configurações</h1>
-        <form>
+        <form onSubmit={ this.handleSubmit }>
           { this.renderCategory() }
           { this.renderDifficulty() }
           { this.renderType() }
-          <Link to="/">
-            <Button
-              type="button"
-              className="settings-btn"
-              onClick={ this.onClick }
-              value="Salvar e Bora Jogar!"
-            />
-          </Link>
+          <Button
+            className="settings-btn"
+            testid="settings-btn"
+            value="Salvar e Bora Jogar!"
+          />
         </form>
       </main>
     );
@@ -119,6 +118,11 @@ const mapDispatchToProps = (dispatch) => ({
 
 Config.propTypes = {
   setSettingsGames: PropTypes.func.isRequired,
+  history: PropTypes.shape({ push: PropTypes.func }),
+};
+
+Config.defaultProps = {
+  history: <p>Sem valor</p>,
 };
 
 export default connect(null, mapDispatchToProps)(Config);

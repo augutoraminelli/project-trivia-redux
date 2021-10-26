@@ -31,11 +31,14 @@ const opentdbAPI = {
     }
   },
 
-  fetchQuestions: async (amount = QUESTIONS) => {
+  fetchQuestions: async (amount = QUESTIONS, settings = {}) => {
     const token = storage.read('token');
     const OPENTDB_TRIVIA = `${OPENTDB_BASEURL}/api.php?amount=${amount}&token=${token}`;
+    const request = Object.keys(settings).reduce((acc, curr) => (
+      acc + (settings[curr] !== '' ? `&${curr}=${settings[curr]}` : '')
+    ), OPENTDB_TRIVIA);
     try {
-      const response = await (await fetch(OPENTDB_TRIVIA)).json();
+      const response = await (await fetch(request)).json();
       switch (response.response_code) {
       case RESPONSE_CODE_SUCESS:
         return response;
