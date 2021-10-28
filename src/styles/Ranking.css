@@ -1,0 +1,12 @@
+a {
+  text-decoration: none;
+}
+
+.btn {
+  background-color: forestgreen;
+  display: block;
+  font-size: 2em;
+  margin: auto;
+  margin-top: 10px;
+  min-width: 15em;
+}

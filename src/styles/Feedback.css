@@ -2,7 +2,14 @@
   text-align: center;
 }
 
-.btn-play-again {
+.btn {
+  display: block;
+  font-size: 2em;
+  margin: auto;
+  min-width: 15em;
+}
+
+.btn-play {
   background-color: forestgreen;
   margin-top: 10px;
 }
@@ -14,11 +21,4 @@
 
 a {
   text-decoration: none;
-}
-
-button {
-  display: block;
-  font-size: 2em;
-  margin: auto;
-  min-width: 15em;
 }
