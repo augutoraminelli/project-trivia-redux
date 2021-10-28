@@ -7,6 +7,7 @@ const initialPlayerState = {
   assertions: 0,
   score: 0,
   gravatarEmail: '',
+  picture: '',
 };
 
 const player = (state = initialPlayerState, { type, payload }) => {

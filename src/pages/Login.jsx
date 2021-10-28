@@ -8,6 +8,7 @@ import Input from '../components/Input';
 import Footer from '../components/Footer';
 import { setPlayerData } from '../redux/actions';
 import opentdbAPI from '../services/opentdbAPI';
+import gravatarAPI from '../services/gravatarAPI';
 
 import logo from '../trivia.png';
 import '../styles/Login.css';
@@ -36,7 +37,11 @@ class Login extends React.Component {
     const { name, gravatarEmail } = this.state;
 
     event.preventDefault();
-    dispatchPayload({ name, assertions: 0, score: 0, gravatarEmail });
+
+    const userHash = gravatarAPI.convertEmail(gravatarEmail);
+    const picture = await gravatarAPI.fetchUserImage(userHash);
+
+    dispatchPayload({ name, assertions: 0, score: 0, gravatarEmail, picture });
 
     await opentdbAPI.fetchToken();
 

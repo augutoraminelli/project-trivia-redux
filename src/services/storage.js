@@ -12,7 +12,7 @@ const storage = {
       } else {
         const savedData = JSON.parse(localStorage.getItem(key));
         const filteredData = data.filter((e) => !savedData.includes(e));
-        localStorage.setItem(key, JSON.stringify(...savedData, ...filteredData));
+        localStorage.setItem(key, JSON.stringify(filteredData));
       }
     }
   },
