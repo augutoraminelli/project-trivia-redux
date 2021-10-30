@@ -14,7 +14,7 @@ export const setSettingsGame = (settings) => ({
   type: SET_SETTINGS_GAME,
   payload: settings,
 });
-  
+
 export const setPlayerRanking = (payload) => ({
   type: SET_PLAYER_RANKING,
   payload,
