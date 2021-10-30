@@ -1,67 +1,48 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import gravatarAPI from '../services/gravatarAPI';
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      src: null,
-    };
-    this.setUserImage = this.setUserImage.bind(this);
-  }
-
-  async componentDidMount() {
-    const { src } = this.state;
-    const { player: { gravatarEmail } } = this.props;
-    if (!src) {
-      const userHash = gravatarAPI.convertEmail(gravatarEmail);
-      await this.setUserImage(userHash);
-    }
-  }
-
-  async setUserImage(hash) {
-    const src = await gravatarAPI.fetchUserImage(hash);
-    this.setState({
-      src,
-    });
-  }
-
   render() {
-    const { player: { name, score } } = this.props;
-    const { src } = this.state;
+    const { name, score, picture } = this.props;
     return (
-      <div>
+      <header>
+        <div className="header-profile-picture">
+          { picture && <img
+            data-testid="header-profile-picture"
+            src={ picture }
+            alt="userAvatar"
+          /> }
+        </div>
         <h2 data-testid="header-player-name">{ `Olá, ${name}` }</h2>
-        { src && <img
-          data-testid="header-profile-picture"
-          src={ src }
-          alt="userAvatar"
-        /> }
-        <p>
+        <div className="header-score">
           Seu placar:&nbsp;
           <span data-testid="header-score">
             { score }
           </span>
-        </p>
-      </div>
+        </div>
+        <div className="header-links">
+          <Link to="/config">
+            <span role="img" aria-label="configuração">⚙️</span>
+            &nbsp;Configuração
+          </Link>
+        </div>
+      </header>
     );
   }
 }
 
 Header.propTypes = {
-  player: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    assertions: PropTypes.number.isRequired,
-    score: PropTypes.number.isRequired,
-    gravatarEmail: PropTypes.string.isRequired,
-  }).isRequired,
+  name: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
+  picture: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  player: state.player,
+  name: state.player.name,
+  score: state.player.score,
+  picture: state.player.picture,
 });
 
 export default connect(mapStateToProps)(Header);

@@ -117,7 +117,7 @@ class QuestionCard extends React.Component {
     } = this.props;
 
     return (
-      <div>
+      <main>
         <div>
           <p data-testid="question-category">
             { category }
@@ -150,7 +150,7 @@ class QuestionCard extends React.Component {
         <div>
           { this.showNext(answer !== NO_ANSWER || timer === 0) }
         </div>
-      </div>
+      </main>
     );
   }
 }
