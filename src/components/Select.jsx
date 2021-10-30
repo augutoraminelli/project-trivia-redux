@@ -23,12 +23,13 @@ export default class Select extends React.Component {
 
 Select.defaultProps = {
   value: undefined,
+  options: [],
 };
 
 Select.propTypes = {
   htmlFor: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.any).isRequired,
+  options: PropTypes.arrayOf(PropTypes.any),
   value: PropTypes.string,
 };

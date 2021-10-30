@@ -1,9 +1,9 @@
 import { SET_SETTINGS_GAME } from '../actions';
 
 const initialSettingsState = {
-  category: '',
-  difficulty: '',
-  type: '',
+  category: 0,
+  difficulty: 'Any Difficulty',
+  type: 'Any Type',
 };
 
 const settings = (state = initialSettingsState, action) => {
