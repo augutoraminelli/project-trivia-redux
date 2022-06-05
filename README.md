@@ -1,8 +1,8 @@
-# Welcome to Trivia APP project
- 
-![Captura de Tela 2022-06-05 às 15 25 31](https://user-images.githubusercontent.com/83237861/172065013-a9e2f16a-193d-4222-b561-4976ab18a879.png) 
-![Captura de Tela 2022-06-05 às 15 25 47](https://user-images.githubusercontent.com/83237861/172065019-a8f0ffa8-e281-472f-a21b-7443b53d6b7b.png)
-![Captura de Tela 2022-06-05 às 15 25 39](https://user-images.githubusercontent.com/83237861/172065022-d2f65d15-006a-4d88-8105-53ef55a6b707.png)
+# Welcome to Trivia APP Project
+
+![Captura de Tela 2022-06-05 às 15 37 19](https://user-images.githubusercontent.com/83237861/172065471-b0480a19-b16e-4481-8ef8-89995efeef49.png)
+![Captura de Tela 2022-06-05 às 15 37 29](https://user-images.githubusercontent.com/83237861/172065473-a7a677c1-e072-427f-8acb-2bd7531e00fb.png)
+![Captura de Tela 2022-06-05 às 15 38 00](https://user-images.githubusercontent.com/83237861/172065475-2ad59b94-fcc8-40b5-b5f8-9ddf316627f3.png)
 
 ## Link Application: https://project-trivia-redux.vercel.app/
 
